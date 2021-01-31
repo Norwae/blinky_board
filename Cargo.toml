@@ -1,0 +1,25 @@
+[package]
+name = "blinky_led"
+version = "0.1.0"
+authors = ["Elisabeth Schulz <elisabeth.schulz@codecentric.de>"]
+edition = "2018"
+
+[dependencies]
+panic-halt = "0.2.0"
+
+[dependencies.arduino-uno]
+git = "https://github.com/Rahix/avr-hal"
+rev = "206ff87bdc38afcffd9db1c9326c0d4d9487cb14"
+
+# Configure the build for minimal size
+[profile.dev]
+panic = "abort"
+lto = true
+opt-level = "s"
+
+[profile.release]
+panic = "abort"
+codegen-units = 1
+debug = true
+lto = true
+opt-level = "s"
